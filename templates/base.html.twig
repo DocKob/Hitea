@@ -22,6 +22,23 @@
                     </li>
                 </ul>
 
+                <ul class="navbar-nav">
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a href="{{ path('app_logout') }}" class="nav-link">Logout</a>
+                        </li>
+                        {% if is_granted('ROLE_USER') %}
+                            <li class="nav-item">
+                                <a href="{{ path('admin.device.index') }}" class="nav-link">Admin</a>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ path('app_login') }}" class="nav-link">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
             </div>
         </nav>
         {% block body %}{% endblock %}

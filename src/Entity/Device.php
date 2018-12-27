@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DeviceRepository")
+ * @UniqueEntity("name")
  */
 class Device
 {
@@ -19,16 +22,21 @@ class Device
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[a-zA-Z0-9\-\_]+$/")
+     * @Assert\Length(min= 3, max=255)
      */
     private $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(max=300)
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Ip
+     * @Assert\NotBlank
      */
     private $ip;
 
@@ -38,7 +46,7 @@ class Device
     private $created_at;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated_at;
 

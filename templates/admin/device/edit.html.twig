@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Edit Device' %}
+
+    {% block body %}
+
+        <div class="container mt-5">
+            <h1>Edit the device</h1>
+            {{ include ('admin/device/_form.html.twig', {
+                form: form,
+                button: 'Save'
+            }) }}
+        </div>
+
+    {% endblock %}
