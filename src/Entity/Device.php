@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -22,7 +24,7 @@ class Device
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("/^[a-zA-Z0-9\-\_]+$/")
+     * @Assert\Regex("/^[a-zA-Z0-9\-\_ ]+$/")
      * @Assert\Length(min= 3, max=255)
      */
     private $name;
@@ -46,7 +48,7 @@ class Device
     private $created_at;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $updated_at;
 
@@ -55,9 +57,16 @@ class Device
      */
     private $active = true;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="devices")
+     */
+    private $tags;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId() : ? int
@@ -138,6 +147,34 @@ class Device
     public function setActive(bool $active) : self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags() : Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag) : self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addDevice($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag) : self
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+            $tag->removeDevice($this);
+        }
 
         return $this;
     }

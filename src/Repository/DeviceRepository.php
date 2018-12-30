@@ -6,6 +6,8 @@ use App\Entity\Device;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Query;
+use App\Entity\DeviceSearch;
 
 /**
  * @method Device|null find($id, $lockMode = null, $lockVersion = null)
@@ -21,13 +23,23 @@ class DeviceRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Device[]
+     * @return Query
      */
-    public function findAllVisible() : array
+    public function findAllVisibleQuery(DeviceSearch $search) : Query
     {
-        return $this->findVisibleQuery()
-            ->getQuery()
-            ->getResult();
+        $query = $this->findVisibleQuery();
+
+        if ($search->getTags()->count() > 0) {
+            $k = 0;
+            foreach ($search->getTags() as $tag) {
+                $k++;
+                $query = $query
+                    ->andWhere(":tag$k MEMBER OF d.tags")
+                    ->setParameter("tag$k", $tag);
+            }
+        }
+
+        return $query->getQuery();
     }
 
     /**

@@ -8,6 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Device;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\DeviceSearch;
+use App\Form\DeviceSearchType;
 
 class DeviceController extends AbstractController
 {
@@ -32,12 +36,22 @@ class DeviceController extends AbstractController
      * @route("/devices", name="device.index")
      * @return Response
      */
-    public function index() : Response
+    public function index(PaginatorInterface $paginator, Request $request) : Response
     {
-        $devices = $this->repository->findAllVisible();
+        $search = new DeviceSearch();
+        $form = $this->createForm(DeviceSearchType::class, $search);
+        $form->handleRequest($request);
+
+        $devices = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1),
+            12
+        );
 
         return $this->render('device/index.html.twig', [
-            'current_menu' => 'devices'
+            'current_menu' => 'devices',
+            'devices' => $devices,
+            'form' => $form->createView()
         ]);
     }
 

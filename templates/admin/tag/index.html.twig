@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Manage all devices' %}
+{% block title 'Manage all tags' %}
 
     {% block body %}
         <div class="container">
 
-            <h1>Manage all devices</h1>
+            <h1>Manage all tags</h1>
 
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">
@@ -17,20 +17,18 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>IP</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for device in devices %}
+                    {% for tag in tags %}
                         <tr>
-                            <td>{{ device.name }}</td>
-                            <td>{{ device.ip }}</td>
+                            <td>{{ tag.name }}</td>
                             <td>
-                                <a href="{{ path('admin.device.edit', {id: device.id}) }}" class="btn btn-warning">Edit</a>
-                                <form method="post" action="{{ path('admin.device.delete', {id: device.id}) }}" style="display: inline-block">
+                                <a href="{{ path('admin.tag.edit', {id: tag.id}) }}" class="btn btn-warning">Edit</a>
+                                <form method="post" action="{{ path('admin.tag.delete', {id: tag.id}) }}" style="display: inline-block">
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ device.id) }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tag.id) }}">
                                     <button class="btn btn-danger">Delete</button>
                                 </form>
                             </td>
@@ -41,7 +39,7 @@
             </table>
 
             <div class="text-right">
-                <a href="{{ path('admin.device.new') }}" class="btn btn-primary">Create</a>
+                <a href="{{ path('admin.tag.new') }}" class="btn btn-primary">Create</a>
             </div>
         </div>
 

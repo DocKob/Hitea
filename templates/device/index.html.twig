@@ -3,9 +3,34 @@
 {% block title 'All Devices' %}
 
     {% block body %}
-        <div class="container mt-5">
+
+        <div class="container">
+            <div class="jumbotron">
+                {{ form_start(form) }}
+                <div class="form-row align-items-end">
+                    <div class="col">
+                        {{ form_row(form.tags) }}
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="container">
             <h1>View all devices</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate reiciendis dolorum excepturi odit, libero laboriosam beatae animi natus tempora voluptatem blanditiis non enim ipsam ad tenetur a autem vero in.</p>
+
+            <div class="row">
+                {% for device in devices %}
+                    <div class="col-md-4">{% include 'device/_device.html.twig' %}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4 offset-md-4">
+                {{ knp_pagination_render(devices) }}
+            </div>
         </div>
 
     {% endblock %}
