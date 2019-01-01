@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title 'All Devices' %}
+    {% block body %}
+        <div class="jumbotron">
+            {{ form_start(form) }}
+            <div class="form-row align-items-end">
+                <div class="col">
+                    {{ form_row(form.tags) }}
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+        <div class="container">
+            <h1>View all devices</h1>
+            <div class="row">
+                {% for device in devices %}
+                    <div class="col-md-4">
+                        {% include 'front/device/_device.html.twig' %}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4 offset-md-4">
+                {{ knp_pagination_render(devices) }}
+            </div>
+        </div>
+    {% endblock %}

@@ -18,7 +18,7 @@ class HomeController extends AbstractController
     {
         $devices = $repository->findLatest();
 
-        return $this->render('pages/home.html.twig', [
+        return $this->render('home.html.twig', [
             'devices' => $devices
         ]);
     }

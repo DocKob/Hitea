@@ -6,6 +6,8 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "cocur/slugify": "^3.1",
+        "doctrine/doctrine-fixtures-bundle": "^3.1",
+        "easycorp/easyadmin-bundle": "^2.0",
         "fzaninotto/faker": "^1.8",
         "knplabs/knp-paginator-bundle": "^2.8",
         "sensio/framework-extra-bundle": "^5.1",
@@ -27,10 +29,11 @@
         "symfony/validator": "4.2.*",
         "symfony/web-link": "4.2.*",
         "symfony/webpack-encore-bundle": "^1.0",
-        "symfony/yaml": "4.2.*"
+        "symfony/yaml": "4.2.*",
+        "twig/cache-extension": "^1.4@dev",
+        "vich/uploader-bundle": "^1.8"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.1",
         "sensiolabs/security-checker": "^5.0",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",

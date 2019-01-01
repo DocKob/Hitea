@@ -6,11 +6,13 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-let $ = require('jquery');
-require('../css/app.css');
+//JQuery and JS modules
+const $ = require('jquery');
 require('select2');
 
-$('select').select2();
+// CSS Modules
+require('../css/app.css');
+require('select2/dist/css/select2.css');
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
+// App JS
+$('select').select2();

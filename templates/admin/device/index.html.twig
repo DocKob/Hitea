@@ -1,48 +1,41 @@
 {% extends 'base.html.twig' %}
-
 {% block title 'Manage all devices' %}
-
     {% block body %}
-        <div class="container">
-
-            <h1>Manage all devices</h1>
-
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message}}
-                </div>
-            {% endfor %}
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>IP</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for device in devices %}
-                        <tr>
-                            <td>{{ device.name }}</td>
-                            <td>{{ device.ip }}</td>
-                            <td>
-                                <a href="{{ path('admin.device.edit', {id: device.id}) }}" class="btn btn-warning">Edit</a>
-                                <form method="post" action="{{ path('admin.device.delete', {id: device.id}) }}" style="display: inline-block">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ device.id) }}">
-                                    <button class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-
-            <div class="text-right">
-                <a href="{{ path('admin.device.new') }}" class="btn btn-primary">Create</a>
+        <h1>Manage all devices</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message}}
             </div>
+        {% endfor %}
+        <div class="text-right">
+            <a href="{{ path('admin.device.new') }}" class="btn btn-primary">Create</a>
         </div>
-
-    {% endblock %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>IP</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in devices %}
+                    <tr>
+                        <td>
+                            {{ device.name }}</td>
+                        <td>
+                            {{ device.ip }}</td>
+                        <td>
+                            <a href="{{ path('admin.device.edit', {id: device.id}) }}" class="btn btn-warning">Edit</a>
+                            <form method="post" action="{{ path('admin.device.delete', {id: device.id}) }}" style="display: inline-block">
+                                <input name="_method" type="hidden" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ device.id) }}">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endblock %}
+        

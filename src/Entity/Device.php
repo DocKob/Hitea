@@ -8,10 +8,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DeviceRepository")
+ * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity("name")
+ * @Vich\Uploadable()
  */
 class Device
 {
@@ -21,6 +26,22 @@ class Device
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $configFilename;
+
+    /**
+     * @var File|null
+     * @Assert\File(
+     *      maxSize = "2048k",
+     *      mimeTypes = {"application/zip", "text/plain"}
+     * )
+     * @Vich\UploadableField(mapping="device_config", fileNameProperty="configFilename")
+     */
+    private $configFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -64,8 +85,6 @@ class Device
 
     public function __construct()
     {
-        $this->created_at = new \DateTime();
-        $this->updated_at = new \DateTime();
         $this->tags = new ArrayCollection();
     }
 
@@ -177,5 +196,53 @@ class Device
         }
 
         return $this;
+    }
+
+    public function getConfigFilename() : ? string
+    {
+        return $this->configFilename;
+    }
+
+    public function setConfigFilename(? string $configFilename) : Device
+    {
+        $this->configFilename = $configFilename;
+
+        return $this;
+    }
+
+    public function getConfigFile() : ? File
+    {
+        return $this->configFile;
+    }
+
+    public function setConfigFile(? File $configFile) : Device
+    {
+        $this->configFile = $configFile;
+        if ($this->configFile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime();
+        }
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime('1000-01-01 00:00:00');
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updated_at = new \DateTime('');
     }
 }

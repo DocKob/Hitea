@@ -10,7 +10,9 @@ use App\Form\DeviceType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 
-
+/**
+ * @Route("/admin/device")
+ */
 class AdminDeviceController extends AbstractController
 {
 
@@ -31,7 +33,7 @@ class AdminDeviceController extends AbstractController
     }
 
     /**
-     * @route("/admin", name="admin.device.index")
+     * @route("/", name="admin.device.index")
      */
     public function index()
     {
@@ -40,7 +42,7 @@ class AdminDeviceController extends AbstractController
     }
 
     /**
-     * @route("/admin/device/create", name="admin.device.new")
+     * @route("/new", name="admin.device.new")
      */
     public function new(Request $request)
     {
@@ -62,7 +64,7 @@ class AdminDeviceController extends AbstractController
     }
 
     /**
-     * @route("/admin/device/{id}", name="admin.device.edit", methods="GET|POST")
+     * @route("/{id}/edit", name="admin.device.edit", methods="GET|POST")
      */
     public function edit(Device $device, Request $request)
     {
@@ -82,7 +84,7 @@ class AdminDeviceController extends AbstractController
     }
 
     /**
-     * @route("/admin/device/{id}", name="admin.device.delete", methods="DELETE")
+     * @route("/{id}", name="admin.device.delete", methods="DELETE")
      */
     public function delete(Device $device, Request $request)
     {

@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Tag;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class DeviceType extends AbstractType
 {
@@ -21,6 +22,9 @@ class DeviceType extends AbstractType
                 'class' => Tag::class,
                 'choice_label' => 'name',
                 'multiple' => true
+            ])
+            ->add('configFile', FileType::class, [
+                'required' => false
             ])
             ->add('active');
     }

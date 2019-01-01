@@ -48,7 +48,7 @@ class DeviceController extends AbstractController
             12
         );
 
-        return $this->render('device/index.html.twig', [
+        return $this->render('front/device/index.html.twig', [
             'current_menu' => 'devices',
             'devices' => $devices,
             'form' => $form->createView()
@@ -67,7 +67,7 @@ class DeviceController extends AbstractController
                 'slug' => $device->getSlug()
             ], 301);
         }
-        return $this->render('device/show.html.twig', [
+        return $this->render('front/device/show.html.twig', [
             'device' => $device,
             'current_menu' => 'devices'
         ]);

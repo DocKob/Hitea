@@ -1,0 +1,51 @@
+easy_admin:
+    site_name: 'Hitea Admin'
+    design:
+        form_theme:
+            - '@EasyAdmin/form/bootstrap_4.html.twig'
+            - '@VichUploader/Form/fields.html.twig'
+    entities:
+        Device:
+            class: App\Entity\Device
+            label: 'Devices'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'ip' }
+                    - { property: 'configFilename', base_path: '%app.path.device_conf%' }
+                    - { property: 'active' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'ip' }
+                    - { property: 'tags' }
+                    - { property: 'configFilename', base_path: '%app.path.device_conf%' }
+                    - { property: 'active' }
+            form:
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'ip' }
+                    - { property: 'tags' }
+                    - { property: 'configFile', type: 'vich_file' }
+                    - { property: 'active' }
+        Tag:
+            class: App\Entity\Tag
+            label: 'Tags'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'name' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'name' }
+            form:
+                fields:
+                    - { property: 'name' }

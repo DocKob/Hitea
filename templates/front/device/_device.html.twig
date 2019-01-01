@@ -1,0 +1,15 @@
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{{ path('device.show', {id: device.id, slug: device.slug}) }}">
+                {{ device.name }}</a>
+        </h5>
+        <p class="card-text">
+            {{ device.description }}</p>
+        <div class="text-primary" style="font-weight: bold">
+            {{ device.ip }}</div>
+        {% if device.configFilename %}
+            <a href="{{ vich_uploader_asset(device, 'configFile') }}">View config file</a>
+        {% endif %}
+    </div>
+</div>

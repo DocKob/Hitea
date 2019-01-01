@@ -1,0 +1,11 @@
+paginator.next: Next
+paginator.previous: Previous
+paginator.results: Results
+delete_modal.content: Delete Confirmation
+delete_modal.title: Delete Confirmation
+delete_modal.action: Delete
+list.row_actions: Actions
+user.signout: Signout
+user.unnamed: None
+user.logged_in_as: Profile
+list.page_title: Title
