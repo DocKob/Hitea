@@ -83,6 +83,11 @@ class Device
      */
     private $tags;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="devices")
+     */
+    private $customer;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -244,5 +249,17 @@ class Device
     public function onPreUpdate()
     {
         $this->updated_at = new \DateTime('');
+    }
+
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customer $customer): self
+    {
+        $this->customer = $customer;
+
+        return $this;
     }
 }

@@ -49,3 +49,60 @@ easy_admin:
             form:
                 fields:
                     - { property: 'name' }
+        Customer:
+            class: App\Entity\Customer
+            label: 'Customers'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'adress' }
+                    - { property: 'phone' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'adress' }
+                    - { property: 'phone' }
+            form:
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'adress' }
+                    - { property: 'phone' }
+        Role:
+            class: App\Entity\Role
+            label: 'Roles'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'title' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'title' }
+            form:
+                fields:
+                    - { property: 'title' }
+        Uses:
+            class: App\Entity\User
+            label: 'Users'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'email' }
+                    - { property: 'userRoles' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'email' }
+                    - { property: 'userRoles' }
+            form:
+                fields:
+                    - { property: 'email' }
+                    - { property: 'userRoles' }

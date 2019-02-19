@@ -11,6 +11,7 @@
         "fzaninotto/faker": "^1.8",
         "knplabs/knp-paginator-bundle": "^2.8",
         "sensio/framework-extra-bundle": "^5.1",
+        "symfony/apache-pack": "^1.0",
         "symfony/asset": "4.2.*",
         "symfony/console": "4.2.*",
         "symfony/dotenv": "4.2.*",
@@ -31,7 +32,7 @@
         "symfony/webpack-encore-bundle": "^1.0",
         "symfony/yaml": "4.2.*",
         "twig/cache-extension": "^1.4@dev",
-        "vich/uploader-bundle": "^1.8"
+        "vich/uploader-bundle": "1.8.*"
     },
     "require-dev": {
         "sensiolabs/security-checker": "^5.0",
