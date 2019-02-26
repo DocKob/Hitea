@@ -1,0 +1,12 @@
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{{ path('customer.show', {id: customer.id, slug: customer.slug}) }}">
+                {{ customer.name }}</a>
+        </h5>
+        <p class="card-text">
+            {{ customer.description }}</p>
+        <div class="text-primary" style="font-weight: bold">
+            {{ customer.phone }}</div>
+    </div>
+</div>

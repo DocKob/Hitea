@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title 'Create Customer' %}
+    {% block body %}
+        <h1>Create a customer</h1>
+        {{ include ('admin/customer/_form.html.twig', {
+                form: form,
+                button: 'Create'
+            }) }}
+    {% endblock %}

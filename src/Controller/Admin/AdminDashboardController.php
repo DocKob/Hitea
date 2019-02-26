@@ -12,16 +12,14 @@ class AdminDashboardController extends AbstractController
 {
 
     public function __construct()
-    {
-
-    }
+    { }
 
     /**
      * @route("/", name="admin.dashboard.index")
      */
     public function index()
     {
-        return $this->render('admin/dashboard/index.html.twig');
+        return $this->render('admin.html.twig');
     }
-
 }
+

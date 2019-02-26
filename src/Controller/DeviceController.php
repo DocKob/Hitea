@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\DeviceSearch;
 use App\Form\DeviceSearchType;
 
+/**
+ * @Route("/app")
+ */
 class DeviceController extends AbstractController
 {
 
@@ -36,7 +39,7 @@ class DeviceController extends AbstractController
      * @route("/devices", name="device.index")
      * @return Response
      */
-    public function index(PaginatorInterface $paginator, Request $request) : Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $search = new DeviceSearch();
         $form = $this->createForm(DeviceSearchType::class, $search);
@@ -59,7 +62,7 @@ class DeviceController extends AbstractController
      * @route("/devices/{slug}-{id}", name="device.show", requirements={"slug": "[a-z0-9\-]*"})
      * @return Response
      */
-    public function show(Device $device, string $slug) : Response
+    public function show(Device $device, string $slug): Response
     {
         if ($device->getSlug() !== $slug) {
             return $this->redirectToRoute('device.show', [
@@ -72,5 +75,5 @@ class DeviceController extends AbstractController
             'current_menu' => 'devices'
         ]);
     }
-
 }
+

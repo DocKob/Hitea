@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title 'Manage all Customers' %}
+    {% block body %}
+        <h1>Manage all customers</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message}}
+            </div>
+        {% endfor %}
+        <div class="text-right">
+            <a href="{{ path('admin.customer.new') }}" class="btn btn-primary">Create</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                    <tr>
+                        <td>
+                            {{ customer.name }}</td>
+                        <td>
+                            {{ customer.description }}</td>
+                        <td>
+                            {{ customer.phone }}</td>
+                        <td>
+                            <a href="{{ path('admin.customer.edit', {id: customer.id}) }}" class="btn btn-warning">Edit</a>
+                            <form method="post" action="{{ path('admin.customer.delete', {id: customer.id}) }}" style="display: inline-block">
+                                <input name="_method" type="hidden" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ customer.id) }}">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endblock %}
+        

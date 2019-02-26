@@ -38,34 +38,21 @@ Encore
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
-    .configureBabel(function (babelConfig) {
-        // add additional presets
-        // babelConfig.presets.push('@babel/preset-flow');
+    .configureBabel(function (babelConfig) {})
 
-        // no plugins are added by default, but you can add some
-        // babelConfig.plugins.push('styled-jsx/babel');
-    }, {
-            // node_modules is not processed through Babel by default
-            // but you can whitelist specific modules to process
-            // include_node_modules: ['foundation-sites']
+// enables Sass/SCSS support
+//.enableSassLoader()
 
-            // or completely control the exclude
-            // exclude: /bower_components/
-        })
+// uncomment if you use TypeScript
+//.enableTypeScriptLoader()
 
-    // enables Sass/SCSS support
-    //.enableSassLoader()
+// uncomment if you're having problems with a jQuery plugin
+//.autoProvidejQuery()
 
-    // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
-
-    // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
-
-    // uncomment if you use API Platform Admin (composer req api-admin)
-    //.enableReactPreset()
-    //.addEntry('admin', './assets/js/admin.js')
-    ;
+// uncomment if you use API Platform Admin (composer req api-admin)
+//.enableReactPreset()
+//.addEntry('admin', './assets/js/admin.js')
+;
 
 var config = Encore.getWebpackConfig();
 

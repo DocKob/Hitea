@@ -1,18 +1,36 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
+import Places from 'places.js'
+import Map from './modules/map'
 
-// any CSS you require will output into a single css file (app.css in this case)
-//JQuery and JS modules
 const $ = require('jquery');
-require('select2');
 
-// CSS Modules
+require('select2');
 require('../css/app.css');
 require('select2/dist/css/select2.css');
 
-// App JS
+Map.init()
+
+let inputAddress = document.querySelector('#customer_adress')
+if (inputAddress !== null) {
+    let place = Places({
+        container: inputAddress
+    })
+    place.on('change', e => {
+        document.querySelector('#customer_city').value = e.suggestion.city
+        document.querySelector('#customer_postal_code').value = e.suggestion.postcode
+        document.querySelector('#customer_lat').value = e.suggestion.latlng.lat
+        document.querySelector('#customer_lng').value = e.suggestion.latlng.lng
+    })
+}
+
+let searchAddress = document.querySelector('#search_address')
+if (searchAddress !== null) {
+    let place = Places({
+        container: searchAddress
+    })
+    place.on('change', e => {
+        document.querySelector('#lat').value = e.suggestion.latlng.lat
+        document.querySelector('#lng').value = e.suggestion.latlng.lng
+    })
+}
+
 $('select').select2();

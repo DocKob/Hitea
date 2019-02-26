@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CustomerRepository")
@@ -39,62 +41,118 @@ class Customer
     private $phone;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\device", mappedBy="customer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Device", mappedBy="customer")
      */
     private $devices;
+
+    /**
+     * @ORM\Column(type="float", scale=4, precision=6)
+     */
+    private $lat;
+
+    /**
+     * @ORM\Column(type="float", scale=4, precision=7)
+     */
+    private $lng;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @Assert\Regex("/^[0-9]{5}$/")
+     * @ORM\Column(type="string", length=255)
+     */
+    private $postal_code;
+
+    /**
+     * @ORM\Column(type="string", length=30, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $rating;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $mobile;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $contact;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $contact_title;
 
     public function __construct()
     {
         $this->devices = new ArrayCollection();
     }
 
-    public function getId() : ? int
+    public function getId(): ? int
     {
         return $this->id;
     }
 
-    public function getName() : ? string
+    public function getName(): ? string
     {
         return $this->name;
     }
 
-    public function setName(string $name) : self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getDescription() : ? string
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->name);
+    }
+
+    public function getDescription(): ? string
     {
         return $this->description;
     }
 
-    public function setDescription(? string $description) : self
+    public function setDescription(? string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getAdress() : ? string
+    public function getAdress(): ? string
     {
         return $this->adress;
     }
 
-    public function setAdress(? string $adress) : self
+    public function setAdress(? string $adress): self
     {
         $this->adress = $adress;
 
         return $this;
     }
 
-    public function getPhone() : ? string
+    public function getPhone(): ? string
     {
         return $this->phone;
     }
 
-    public function setPhone(? string $phone) : self
+    public function setPhone(? string $phone): self
     {
         $this->phone = $phone;
 
@@ -128,6 +186,131 @@ class Customer
                 $device->setCustomer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLat(): ? float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(float $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getLng(): ? float
+    {
+        return $this->lng;
+    }
+
+    public function setLng(float $lng): self
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    public function getCity(): ? string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ? string
+    {
+        return $this->postal_code;
+    }
+
+    public function setPostalCode(string $postal_code): self
+    {
+        $this->postal_code = $postal_code;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getRating(): ?int
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?int $rating): self
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getMobile(): ?string
+    {
+        return $this->mobile;
+    }
+
+    public function setMobile(?string $mobile): self
+    {
+        $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?string $contact): self
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getContactTitle(): ?string
+    {
+        return $this->contact_title;
+    }
+
+    public function setContactTitle(?string $contact_title): self
+    {
+        $this->contact_title = $contact_title;
 
         return $this;
     }

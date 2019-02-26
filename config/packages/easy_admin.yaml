@@ -14,24 +14,34 @@ easy_admin:
                     - id
                     - { property: 'name' }
                     - { property: 'description' }
+                    - { property: 'ip_public' }
                     - { property: 'ip' }
-                    - { property: 'configFilename', base_path: '%app.path.device_conf%' }
+                    - { property: 'customer' }
+                    - { property: 'categorie' }
                     - { property: 'active' }
             show:
                 title: '%%entity_label%% show'
                 fields:
                     - { property: 'name' }
                     - { property: 'description' }
+                    - { property: 'ip_public' }
                     - { property: 'ip' }
+                    - { property: 'categorie' }
                     - { property: 'tags' }
+                    - { property: 'customer' }
                     - { property: 'configFilename', base_path: '%app.path.device_conf%' }
                     - { property: 'active' }
+                    - { property: 'created_at' }
+                    - { property: 'updated_at' }
             form:
                 fields:
                     - { property: 'name' }
                     - { property: 'description' }
+                    - { property: 'ip_public' }
                     - { property: 'ip' }
+                    - { property: 'categorie' }
                     - { property: 'tags' }
+                    - { property: 'customer' }
                     - { property: 'configFile', type: 'vich_file' }
                     - { property: 'active' }
         Tag:
@@ -58,21 +68,38 @@ easy_admin:
                     - id
                     - { property: 'name' }
                     - { property: 'description' }
-                    - { property: 'adress' }
+                    - { property: 'city' }
+                    - { property: 'country' }
                     - { property: 'phone' }
+                    - { property: 'email' }
+                    - { property: 'contact' }
+                    - { property: 'contact_title' }
             show:
                 title: '%%entity_label%% show'
                 fields:
                     - { property: 'name' }
                     - { property: 'description' }
                     - { property: 'adress' }
+                    - { property: 'city' }
+                    - { property: 'postal_code' }
+                    - { property: 'country' }
                     - { property: 'phone' }
+                    - { property: 'mobile' }
+                    - { property: 'rating' }
+                    - { property: 'email' }
+                    - { property: 'contact' }
+                    - { property: 'contact_title' }
             form:
                 fields:
                     - { property: 'name' }
                     - { property: 'description' }
-                    - { property: 'adress' }
+                    - { property: 'country' }
                     - { property: 'phone' }
+                    - { property: 'mobile' }
+                    - { property: 'rating' }
+                    - { property: 'email' }
+                    - { property: 'contact' }
+                    - { property: 'contact_title' }
         Role:
             class: App\Entity\Role
             label: 'Roles'
@@ -88,7 +115,7 @@ easy_admin:
             form:
                 fields:
                     - { property: 'title' }
-        Uses:
+        User:
             class: App\Entity\User
             label: 'Users'
             list:
@@ -106,3 +133,27 @@ easy_admin:
                 fields:
                     - { property: 'email' }
                     - { property: 'userRoles' }
+        Categorie:
+            class: App\Entity\Categorie
+            label: 'Categories'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'parent' }
+                    - { property: 'child' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'parent' }
+                    - { property: 'child' }
+            form:
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'parent' }
+                    - { property: 'child' }

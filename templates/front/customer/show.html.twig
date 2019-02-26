@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title customer.name %}
+    {% block body %}
+        <div class="row">
+            <div class="col-md-8">
+                <h1>
+                    {{ customer.name }}</h1>
+            </div>
+            <div class="col-md-4">
+                <h2>Infos</h2>
+                <h2>
+                    Tel:
+                    {{ customer.phone }}</h2>
+                <h2>
+                    {{ customer.adress }},
+                    {{ customer.city }}</h2>
+                <p>
+                    {{ customer.description }}</p>
+            </div>
+            <div id="map" style="width: 100%; height: 700px" data-lat="{{ customer.lat }}" data-lng="{{ customer.lng }}"></div>
+        </div>
+    {% endblock %}

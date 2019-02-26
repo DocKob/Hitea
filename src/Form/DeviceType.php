@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Tag;
+use App\Entity\Customer;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class DeviceType extends AbstractType
@@ -22,6 +23,11 @@ class DeviceType extends AbstractType
                 'class' => Tag::class,
                 'choice_label' => 'name',
                 'multiple' => true
+            ])
+            ->add('customer', EntityType::class, [
+                'class' => Customer::class,
+                'choice_label' => 'name',
+                'multiple' => false
             ])
             ->add('configFile', FileType::class, [
                 'required' => false
