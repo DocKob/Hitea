@@ -98,6 +98,46 @@ class Device
      */
     private $categorie;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $maker;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $model;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $port;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $port_public;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $serial;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $os_version;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $mac_adress;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $domain;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -293,6 +333,102 @@ class Device
     public function setCategorie(? Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getMaker(): ?string
+    {
+        return $this->maker;
+    }
+
+    public function setMaker(?string $maker): self
+    {
+        $this->maker = $maker;
+
+        return $this;
+    }
+
+    public function getModel(): ?string
+    {
+        return $this->model;
+    }
+
+    public function setModel(?string $model): self
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    public function getPort(): ?int
+    {
+        return $this->port;
+    }
+
+    public function setPort(?int $port): self
+    {
+        $this->port = $port;
+
+        return $this;
+    }
+
+    public function getPortPublic(): ?int
+    {
+        return $this->port_public;
+    }
+
+    public function setPortPublic(?int $port_public): self
+    {
+        $this->port_public = $port_public;
+
+        return $this;
+    }
+
+    public function getSerial(): ?string
+    {
+        return $this->serial;
+    }
+
+    public function setSerial(?string $serial): self
+    {
+        $this->serial = $serial;
+
+        return $this;
+    }
+
+    public function getOsVersion(): ?string
+    {
+        return $this->os_version;
+    }
+
+    public function setOsVersion(?string $os_version): self
+    {
+        $this->os_version = $os_version;
+
+        return $this;
+    }
+
+    public function getMacAdress(): ?string
+    {
+        return $this->mac_adress;
+    }
+
+    public function setMacAdress(?string $mac_adress): self
+    {
+        $this->mac_adress = $mac_adress;
+
+        return $this;
+    }
+
+    public function getDomain(): ?string
+    {
+        return $this->domain;
+    }
+
+    public function setDomain(?string $domain): self
+    {
+        $this->domain = $domain;
 
         return $this;
     }

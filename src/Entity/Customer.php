@@ -96,6 +96,11 @@ class Customer
      */
     private $contact_title;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $customer_num;
+
     public function __construct()
     {
         $this->devices = new ArrayCollection();
@@ -311,6 +316,18 @@ class Customer
     public function setContactTitle(?string $contact_title): self
     {
         $this->contact_title = $contact_title;
+
+        return $this;
+    }
+
+    public function getCustomerNum(): ?int
+    {
+        return $this->customer_num;
+    }
+
+    public function setCustomerNum(?int $customer_num): self
+    {
+        $this->customer_num = $customer_num;
 
         return $this;
     }
