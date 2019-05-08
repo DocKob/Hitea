@@ -18,7 +18,6 @@ class DeviceType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('ip')
             ->add('tags', EntityType::class, [
                 'class' => Tag::class,
                 'choice_label' => 'name',

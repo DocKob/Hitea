@@ -16,8 +16,7 @@ class DeviceFixtures extends Fixture
             $device = new Device();
             $device
                 ->setName($faker->words(3, true))
-                ->setDescription($faker->sentences(3, true))
-                ->setIp('192.168.1.' . $faker->numberBetween(10, 254));
+                ->setDescription($faker->sentences(3, true));
             $manager->persist($device);
         }
 

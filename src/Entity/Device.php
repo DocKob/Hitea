@@ -57,13 +57,6 @@ class Device
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Ip
-     * @Assert\NotBlank
-     */
-    private $ip;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -89,11 +82,6 @@ class Device
     private $customer;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    private $ip_public;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="devices")
      */
     private $categorie;
@@ -107,16 +95,6 @@ class Device
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $model;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $port;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $port_public;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -143,12 +121,12 @@ class Device
         $this->tags = new ArrayCollection();
     }
 
-    public function getId(): ? int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ? string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -165,31 +143,19 @@ class Device
         return (new Slugify())->slugify($this->name);
     }
 
-    public function getDescription(): ? string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(? string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getIp(): ? string
-    {
-        return $this->ip;
-    }
-
-    public function setIp(string $ip): self
-    {
-        $this->ip = $ip;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ? \DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
@@ -201,7 +167,7 @@ class Device
         return $this;
     }
 
-    public function getUpdatedAt(): ? \DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
     }
@@ -213,7 +179,7 @@ class Device
         return $this;
     }
 
-    public function getActive(): ? bool
+    public function getActive(): ?bool
     {
         return $this->active;
     }
@@ -253,24 +219,24 @@ class Device
         return $this;
     }
 
-    public function getConfigFilename(): ? string
+    public function getConfigFilename(): ?string
     {
         return $this->configFilename;
     }
 
-    public function setConfigFilename(? string $configFilename): Device
+    public function setConfigFilename(?string $configFilename): Device
     {
         $this->configFilename = $configFilename;
 
         return $this;
     }
 
-    public function getConfigFile(): ? File
+    public function getConfigFile(): ?File
     {
         return $this->configFile;
     }
 
-    public function setConfigFile(? File $configFile): Device
+    public function setConfigFile(?File $configFile): Device
     {
         $this->configFile = $configFile;
         if ($this->configFile instanceof UploadedFile) {
@@ -301,36 +267,24 @@ class Device
         $this->updated_at = new \DateTime('');
     }
 
-    public function getCustomer(): ? Customer
+    public function getCustomer(): ?Customer
     {
         return $this->customer;
     }
 
-    public function setCustomer(? Customer $customer): self
+    public function setCustomer(?Customer $customer): self
     {
         $this->customer = $customer;
 
         return $this;
     }
 
-    public function getIpPublic(): ? string
-    {
-        return $this->ip_public;
-    }
-
-    public function setIpPublic(? string $ip_public): self
-    {
-        $this->ip_public = $ip_public;
-
-        return $this;
-    }
-
-    public function getCategorie(): ? Categorie
+    public function getCategorie(): ?Categorie
     {
         return $this->categorie;
     }
 
-    public function setCategorie(? Categorie $categorie): self
+    public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
 
@@ -357,30 +311,6 @@ class Device
     public function setModel(?string $model): self
     {
         $this->model = $model;
-
-        return $this;
-    }
-
-    public function getPort(): ?int
-    {
-        return $this->port;
-    }
-
-    public function setPort(?int $port): self
-    {
-        $this->port = $port;
-
-        return $this;
-    }
-
-    public function getPortPublic(): ?int
-    {
-        return $this->port_public;
-    }
-
-    public function setPortPublic(?int $port_public): self
-    {
-        $this->port_public = $port_public;
 
         return $this;
     }

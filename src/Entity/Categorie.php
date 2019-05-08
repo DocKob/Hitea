@@ -29,9 +29,9 @@ class Categorie
     private $description;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $parent = [];
+    private $parent;
 
     /**
      * @ORM\Column(type="json", nullable=true)
@@ -48,12 +48,12 @@ class Categorie
         $this->devices = new ArrayCollection();
     }
 
-    public function getId(): ? int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ? string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -65,36 +65,36 @@ class Categorie
         return $this;
     }
 
-    public function getDescription(): ? string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(? string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getParent(): ? array
+    public function getParent(): ?int
     {
         return $this->parent;
     }
 
-    public function setParent(? array $parent): self
+    public function setParent(?int $parent): self
     {
         $this->parent = $parent;
 
         return $this;
     }
 
-    public function getChild(): ? array
+    public function getChild(): ?array
     {
         return $this->child;
     }
 
-    public function setChild(? array $child): self
+    public function setChild(?array $child): self
     {
         $this->child = $child;
 

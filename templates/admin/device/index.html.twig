@@ -14,7 +14,6 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>IP</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -24,18 +23,15 @@
                         <td>
                             {{ device.name }}</td>
                         <td>
-                            {{ device.ip }}</td>
-                        <td>
                             <a href="{{ path('admin.device.edit', {id: device.id}) }}" class="btn btn-warning">Edit</a>
                             <form method="post" action="{{ path('admin.device.delete', {id: device.id}) }}" style="display: inline-block">
                                 <input name="_method" type="hidden" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ device.id) }}">
-                                        <button class="btn btn-danger">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% endblock %}
-        
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ device.id) }}">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}

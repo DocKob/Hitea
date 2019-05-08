@@ -14,8 +14,6 @@ easy_admin:
                     - id
                     - { property: 'name' }
                     - { property: 'description' }
-                    - { property: 'ip_public' }
-                    - { property: 'ip' }
                     - { property: 'customer' }
                     - { property: 'categorie' }
                     - { property: 'active' }
@@ -24,8 +22,6 @@ easy_admin:
                 fields:
                     - { property: 'name' }
                     - { property: 'description' }
-                    - { property: 'ip_public' }
-                    - { property: 'ip' }
                     - { property: 'categorie' }
                     - { property: 'tags' }
                     - { property: 'customer' }
@@ -37,8 +33,6 @@ easy_admin:
                 fields:
                     - { property: 'name' }
                     - { property: 'description' }
-                    - { property: 'ip_public' }
-                    - { property: 'ip' }
                     - { property: 'categorie' }
                     - { property: 'tags' }
                     - { property: 'customer' }

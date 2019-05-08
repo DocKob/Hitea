@@ -46,23 +46,23 @@ class Customer
     private $devices;
 
     /**
-     * @ORM\Column(type="float", scale=4, precision=6)
+     * @ORM\Column(type="float", scale=4, precision=6, nullable=true)
      */
     private $lat;
 
     /**
-     * @ORM\Column(type="float", scale=4, precision=7)
+     * @ORM\Column(type="float", scale=4, precision=7, nullable=true)
      */
     private $lng;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $city;
 
     /**
      * @Assert\Regex("/^[0-9]{5}$/")
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $postal_code;
 
@@ -77,7 +77,7 @@ class Customer
     private $rating;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $email;
 
@@ -106,12 +106,12 @@ class Customer
         $this->devices = new ArrayCollection();
     }
 
-    public function getId(): ? int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ? string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -128,36 +128,36 @@ class Customer
         return (new Slugify())->slugify($this->name);
     }
 
-    public function getDescription(): ? string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(? string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getAdress(): ? string
+    public function getAdress(): ?string
     {
         return $this->adress;
     }
 
-    public function setAdress(? string $adress): self
+    public function setAdress(?string $adress): self
     {
         $this->adress = $adress;
 
         return $this;
     }
 
-    public function getPhone(): ? string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    public function setPhone(? string $phone): self
+    public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
 
@@ -195,7 +195,7 @@ class Customer
         return $this;
     }
 
-    public function getLat(): ? float
+    public function getLat(): ?float
     {
         return $this->lat;
     }
@@ -207,7 +207,7 @@ class Customer
         return $this;
     }
 
-    public function getLng(): ? float
+    public function getLng(): ?float
     {
         return $this->lng;
     }
@@ -219,7 +219,7 @@ class Customer
         return $this;
     }
 
-    public function getCity(): ? string
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -231,7 +231,7 @@ class Customer
         return $this;
     }
 
-    public function getPostalCode(): ? string
+    public function getPostalCode(): ?string
     {
         return $this->postal_code;
     }
