@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\CustomerRepository;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * @Route("/admin/customer")
+ * @Route("manage/customers")
  */
 class AdminCustomerController extends AbstractController
 {
@@ -38,7 +38,7 @@ class AdminCustomerController extends AbstractController
     public function index()
     {
         $customers = $this->repository->findAll();
-        return $this->render('admin/customer/index.html.twig', compact('customers'));
+        return $this->render('front/customer/index_table.html.twig', compact('customers'));
     }
 
     /**
@@ -57,7 +57,7 @@ class AdminCustomerController extends AbstractController
             return $this->redirectToRoute('admin.customer.index');
         }
 
-        return $this->render('admin/customer/new.html.twig', [
+        return $this->render('front/customer/new.html.twig', [
             'customer' => $customer,
             'form' => $form->createView()
         ]);
@@ -77,7 +77,7 @@ class AdminCustomerController extends AbstractController
             return $this->redirectToRoute('admin.customer.index');
         }
 
-        return $this->render('admin/customer/edit.html.twig', [
+        return $this->render('front/customer/edit.html.twig', [
             'customer' => $customer,
             'form' => $form->createView()
         ]);
@@ -95,5 +95,4 @@ class AdminCustomerController extends AbstractController
         }
         return $this->redirectToRoute('admin.customer.index');
     }
-
 }

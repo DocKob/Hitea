@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title 'Create Device' %}
-    {% block body %}
-        <h1>Create a device</h1>
-        {{ include ('admin/device/_form.html.twig', {
+{% block body %}
+    <h1>Create a device</h1>
+    {{ include ('front/device/_form.html.twig', {
+
                 form: form,
                 button: 'Create'
             }) }}
-    {% endblock %}
+{% endblock %}

@@ -5,110 +5,6 @@ easy_admin:
             - '@EasyAdmin/form/bootstrap_4.html.twig'
             - '@VichUploader/Form/fields.html.twig'
     entities:
-        Device:
-            class: App\Entity\Device
-            label: 'Devices'
-            list:
-                title: '%%entity_label%% listing'
-                fields:
-                    - id
-                    - { property: 'name' }
-                    - { property: 'description' }
-                    - { property: 'customer' }
-                    - { property: 'categorie' }
-                    - { property: 'active' }
-            show:
-                title: '%%entity_label%% show'
-                fields:
-                    - { property: 'name' }
-                    - { property: 'description' }
-                    - { property: 'categorie' }
-                    - { property: 'tags' }
-                    - { property: 'customer' }
-                    - { property: 'configFilename', base_path: '%app.path.device_conf%' }
-                    - { property: 'active' }
-                    - { property: 'created_at' }
-                    - { property: 'updated_at' }
-            form:
-                fields:
-                    - { property: 'name' }
-                    - { property: 'description' }
-                    - { property: 'categorie' }
-                    - { property: 'tags' }
-                    - { property: 'customer' }
-                    - { property: 'configFile', type: 'vich_file' }
-                    - { property: 'active' }
-        Tag:
-            class: App\Entity\Tag
-            label: 'Tags'
-            list:
-                title: '%%entity_label%% listing'
-                fields:
-                    - id
-                    - { property: 'name' }
-            show:
-                title: '%%entity_label%% show'
-                fields:
-                    - { property: 'name' }
-            form:
-                fields:
-                    - { property: 'name' }
-        Customer:
-            class: App\Entity\Customer
-            label: 'Customers'
-            list:
-                title: '%%entity_label%% listing'
-                fields:
-                    - id
-                    - { property: 'name' }
-                    - { property: 'description' }
-                    - { property: 'city' }
-                    - { property: 'country' }
-                    - { property: 'phone' }
-                    - { property: 'email' }
-                    - { property: 'contact' }
-                    - { property: 'contact_title' }
-            show:
-                title: '%%entity_label%% show'
-                fields:
-                    - { property: 'name' }
-                    - { property: 'description' }
-                    - { property: 'adress' }
-                    - { property: 'city' }
-                    - { property: 'postal_code' }
-                    - { property: 'country' }
-                    - { property: 'phone' }
-                    - { property: 'mobile' }
-                    - { property: 'rating' }
-                    - { property: 'email' }
-                    - { property: 'contact' }
-                    - { property: 'contact_title' }
-            form:
-                fields:
-                    - { property: 'name' }
-                    - { property: 'description' }
-                    - { property: 'country' }
-                    - { property: 'phone' }
-                    - { property: 'mobile' }
-                    - { property: 'rating' }
-                    - { property: 'email' }
-                    - { property: 'contact' }
-                    - { property: 'contact_title' }
-        Role:
-            class: App\Entity\Role
-            label: 'Roles'
-            list:
-                title: '%%entity_label%% listing'
-                fields:
-                    - id
-                    - { property: 'title' }
-            show:
-                title: '%%entity_label%% show'
-                fields:
-                    - { property: 'title' }
-            form:
-                fields:
-                    - { property: 'title' }
         User:
             class: App\Entity\User
             label: 'Users'
@@ -127,6 +23,23 @@ easy_admin:
                 fields:
                     - { property: 'email' }
                     - { property: 'userRoles' }
+        Role:
+            class: App\Entity\Role
+            label: 'Roles'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'title' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'title' }
+                    - { property: 'users' }
+            form:
+                fields:
+                    - { property: 'title' }
+                    - { property: 'users' }
         Categorie:
             class: App\Entity\Categorie
             label: 'Categories'
@@ -145,9 +58,165 @@ easy_admin:
                     - { property: 'description' }
                     - { property: 'parent' }
                     - { property: 'child' }
+                    - { property: 'devices' }
             form:
                 fields:
                     - { property: 'name' }
                     - { property: 'description' }
                     - { property: 'parent' }
                     - { property: 'child' }
+                    - { property: 'devices' }
+        Tag:
+            class: App\Entity\Tag
+            label: 'Tags'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'name' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'name' }
+                    - { property: 'devices' }
+            form:
+                fields:
+                    - { property: 'name' }
+                    - { property: 'devices' }
+        Customer:
+            class: App\Entity\Customer
+            label: 'Customers'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'city' }
+                    - { property: 'phone' }
+                    - { property: 'email' }
+                    - { property: 'contact' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'adress' }
+                    - { property: 'city' }
+                    - { property: 'postal_code' }
+                    - { property: 'country' }
+                    - { property: 'lat' }
+                    - { property: 'lng' }
+                    - { property: 'phone' }
+                    - { property: 'devices' }
+                    - { property: 'mobile' }
+                    - { property: 'rating' }
+                    - { property: 'email' }
+                    - { property: 'contact' }
+                    - { property: 'contact_title' }
+            form:
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'adress' }
+                    - { property: 'city' }
+                    - { property: 'postal_code' }
+                    - { property: 'country' }
+                    - { property: 'lat' }
+                    - { property: 'lng' }
+                    - { property: 'phone' }
+                    - { property: 'devices' }
+                    - { property: 'mobile' }
+                    - { property: 'rating' }
+                    - { property: 'email' }
+                    - { property: 'contact' }
+                    - { property: 'contact_title' }
+        Device:
+            class: App\Entity\Device
+            label: 'Devices'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'customer' }
+                    - { property: 'maker' }
+                    - { property: 'model' }
+                    - { property: 'os_version' }
+                    - { property: 'active' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'maker' }
+                    - { property: 'model' }
+                    - { property: 'serial' }
+                    - { property: 'os_version' }
+                    - { property: 'categorie' }
+                    - { property: 'tags' }
+                    - { property: 'customer' }
+                    - { property: 'configFilename', base_path: '%app.path.device_conf%' }
+                    - { property: 'mac_adress' }
+                    - { property: 'domain' }
+                    - { property: 'interfaces' }
+                    - { property: 'active' }
+                    - { property: 'created_at' }
+                    - { property: 'updated_at' }
+            form:
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'maker' }
+                    - { property: 'model' }
+                    - { property: 'serial' }
+                    - { property: 'os_version' }
+                    - { property: 'categorie' }
+                    - { property: 'tags' }
+                    - { property: 'customer' }
+                    - { property: 'configFilename', base_path: '%app.path.device_conf%' }
+                    - { property: 'mac_adress' }
+                    - { property: 'domain' }
+                    - { property: 'interfaces' }
+                    - { property: 'active' }
+                    - { property: 'created_at' }
+                    - { property: 'updated_at' }
+        NetInterface:
+            class: App\Entity\NetInterface
+            label: 'Interfaces'
+            list:
+                title: '%%entity_label%% listing'
+                fields:
+                    - id
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'devices' }
+                    - { property: 'ip' }
+                    - { property: 'port' }
+                    - { property: 'domain' }
+            show:
+                title: '%%entity_label%% show'
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'devices' }
+                    - { property: 'type' }
+                    - { property: 'mac' }
+                    - { property: 'ip' }
+                    - { property: 'mask' }
+                    - { property: 'gateway' }
+                    - { property: 'port' }
+                    - { property: 'domain' }
+            form:
+                fields:
+                    - { property: 'name' }
+                    - { property: 'description' }
+                    - { property: 'devices' }
+                    - { property: 'type' }
+                    - { property: 'mac' }
+                    - { property: 'ip' }
+                    - { property: 'mask' }
+                    - { property: 'gateway' }
+                    - { property: 'port' }
+                    - { property: 'domain' }

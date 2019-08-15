@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title 'Edit Customer' %}
-    {% block body %}
-        <h1>Edit the customer</h1>
-        {{ include ('admin/customer/_form.html.twig', {
+{% block body %}
+    <h1>Edit the customer</h1>
+    {{ include ('frontcustomer/_form.html.twig', {
                 form: form,
                 button: 'Save'
             }) }}
-    {% endblock %}
+{% endblock %}

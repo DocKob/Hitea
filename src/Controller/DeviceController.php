@@ -14,7 +14,7 @@ use App\Entity\DeviceSearch;
 use App\Form\DeviceSearchType;
 
 /**
- * @Route("/app")
+ * @Route("/app/devices")
  */
 class DeviceController extends AbstractController
 {
@@ -36,7 +36,7 @@ class DeviceController extends AbstractController
     }
 
     /**
-     * @route("/devices", name="device.index")
+     * @route("/", name="device.index")
      * @return Response
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
@@ -59,7 +59,7 @@ class DeviceController extends AbstractController
     }
 
     /**
-     * @route("/devices/{slug}-{id}", name="device.show", requirements={"slug": "[a-z0-9\-]*"})
+     * @route("/{slug}-{id}", name="device.show", requirements={"slug": "[a-z0-9\-]*"})
      * @return Response
      */
     public function show(Device $device, string $slug): Response
@@ -76,4 +76,3 @@ class DeviceController extends AbstractController
         ]);
     }
 }
-

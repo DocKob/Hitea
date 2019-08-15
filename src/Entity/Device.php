@@ -116,9 +116,15 @@ class Device
      */
     private $domain;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\NetInterface", inversedBy="devices")
+     */
+    private $interfaces;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->interfaces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -359,6 +365,32 @@ class Device
     public function setDomain(?string $domain): self
     {
         $this->domain = $domain;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|NetInterface[]
+     */
+    public function getInterfaces(): Collection
+    {
+        return $this->interfaces;
+    }
+
+    public function addInterface(NetInterface $interface): self
+    {
+        if (!$this->interfaces->contains($interface)) {
+            $this->interfaces[] = $interface;
+        }
+
+        return $this;
+    }
+
+    public function removeInterface(NetInterface $interface): self
+    {
+        if ($this->interfaces->contains($interface)) {
+            $this->interfaces->removeElement($interface);
+        }
 
         return $this;
     }

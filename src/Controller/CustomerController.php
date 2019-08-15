@@ -14,7 +14,7 @@ use App\Entity\CustomerSearch;
 use App\Form\CustomerSearchType;
 
 /**
- * @Route("/app")
+ * @Route("/app/customers")
  */
 class CustomerController extends AbstractController
 {
@@ -36,7 +36,7 @@ class CustomerController extends AbstractController
     }
 
     /**
-     * @route("/customers", name="customer.index")
+     * @route("/", name="customer.index")
      * @return Response
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
@@ -59,7 +59,7 @@ class CustomerController extends AbstractController
     }
 
     /**
-     * @route("/customers/{slug}-{id}", name="customer.show", requirements={"slug": "[a-z0-9\-]*"})
+     * @route("/{slug}-{id}", name="customer.show", requirements={"slug": "[a-z0-9\-]*"})
      * @return Response
      */
     public function show(Customer $customer, string $slug): Response

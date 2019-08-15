@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\DeviceRepository;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * @Route("/admin/device")
+ * @Route("manage/devices")
  */
 class AdminDeviceController extends AbstractController
 {
@@ -38,7 +38,7 @@ class AdminDeviceController extends AbstractController
     public function index()
     {
         $devices = $this->repository->findAll();
-        return $this->render('admin/device/index.html.twig', compact('devices'));
+        return $this->render('front/device/index_table.html.twig', compact('devices'));
     }
 
     /**
@@ -57,7 +57,7 @@ class AdminDeviceController extends AbstractController
             return $this->redirectToRoute('admin.device.index');
         }
 
-        return $this->render('admin/device/new.html.twig', [
+        return $this->render('front/device/new.html.twig', [
             'device' => $device,
             'form' => $form->createView()
         ]);
@@ -77,7 +77,7 @@ class AdminDeviceController extends AbstractController
             return $this->redirectToRoute('admin.device.index');
         }
 
-        return $this->render('admin/device/edit.html.twig', [
+        return $this->render('front/device/edit.html.twig', [
             'device' => $device,
             'form' => $form->createView()
         ]);
@@ -95,5 +95,4 @@ class AdminDeviceController extends AbstractController
         }
         return $this->redirectToRoute('admin.device.index');
     }
-
 }
